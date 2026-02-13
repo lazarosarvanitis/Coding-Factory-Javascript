@@ -55,7 +55,7 @@ const users = [
 
     const hasExpensiveItems = cart.some(item => item.price > 800); // true, because laptop is 1000
     console.log(hasExpensiveItems); 
-    
+
     //every
 
     const allItemsExpensive = cart.every(item => item.price < 1500); // true, because all items are less than 1500
@@ -73,3 +73,7 @@ const users = [
     const allTags = posts.flatMap(post => post.tags); // ["javascript", "programming", "css", "design", "html", "web"]
 
     console.log(allTags);
+
+    // findIndex
+
+    const userIndex = users.findIndex(user => user.name === "Bob"); // 1, because Bob is at index 1
