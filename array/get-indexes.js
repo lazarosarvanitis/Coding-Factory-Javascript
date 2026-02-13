@@ -13,6 +13,15 @@ const getIndexes = (array, value) => {
 
 console.log(getIndexes(arr, 3)); // Output: [2]
 
+// with reduce
 
+const getIndexesWithReduce = (array, value) => {
+    return array.reduce((indexes, element, index) => {
+        if (element === value) {
+            indexes.push(index);
+        }
+        return indexes;
+    }, []);
+}
 
-
+console.log(getIndexesWithReduce(arr, 3)); // Output: [2]
