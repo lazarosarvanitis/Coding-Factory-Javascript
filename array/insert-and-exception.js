@@ -2,12 +2,8 @@ const products = [];
 
 function insert(arr, product) {
     try {
-        if(!Array.isArray(arr)) {
-            throw new TypeError("Expected an array");
-        }
-
-        if (typeof product !== "string") {
-            throw new TypeError("Product must be a string");
+        if(!Array.isArray(arr || (typeof product!== "string"))) {
+            throw new illegalArgumentError("Expected an array and a string");
         }
 
         if (product.trim() === "") {
@@ -20,7 +16,7 @@ function insert(arr, product) {
         // }
 
         if (arr.includes(product)) {
-            throw new Error(`Product "${product}" already exists in the array`);
+            throw new ProductAllreadyExistsError(`Product "${product}" already exists in the array.`);
         }
 
         arr.push(product);
@@ -28,13 +24,22 @@ function insert(arr, product) {
     }
     catch (error) {
         console.error(`Insert failed: ${error.message}`);
+        console.error(`$(error.code)`);
         throw error;
     }
 }
 
-insert(products, "Laptop");
-insert(products, "Smartphone");
-insert(products, "Keyboard");
-insert(products, "Laptop"); // This will throw an error
-
-console.log(products);
+try {
+    insert(products, "Laptop");
+} catch (error) {
+    switch (error.code) {
+        case "ILLEGAL_ARGUMENT":
+            console.error("Please provide valid arguments.");
+            break;
+        case "PRODUCT_ALREADY_EXISTS":
+            console.error("The product you are trying to insert already exists.");
+            break;
+        default:
+            console.error("An unexpected error occurred.");
+    }
+}
