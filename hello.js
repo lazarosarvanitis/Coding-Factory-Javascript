@@ -1,4 +1,4 @@
 /**
- * This is a simple JavaScript program that prints "Hello, World!" 
+ * This is a simple JavaScript program that prints "Hello World!" 
  */
-console.log("Hello, World!");
+console.log("Hello World!");
